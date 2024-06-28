@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function MyNav(){
     return (
         <>
-           <Navbar expand="lg" className="bg-body-tertiary">
+           <Navbar expand="lg" className="bg-body-tertiary border border-bottom-1">
       <Container fluid>
         <Navbar.Brand href="#home">EPICBOOKS</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -1,0 +1,20 @@
+.bookCard{
+    margin: 10px;
+    box-shadow: 10px 10px 5px #dedede;
+    transition: transform 0.2s;
+    
+}
+
+.bookCard:hover{
+    transform: scale(1.05)
+
+}
+
+.copertine{
+    width: 280px;
+    height: 350px;
+    /* margin: 8px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px #dedede; */
+
+}
