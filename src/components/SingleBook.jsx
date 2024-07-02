@@ -1,9 +1,15 @@
 import Card from 'react-bootstrap/Card';
-import './Libri.css'
+import './SingleBook.css'
+import { useState } from 'react';
 
-function Libri({book}){
+function SingleBook({book}){
+
+  const [select,setSelect] = useState(false)
+  const handleClick = () =>{
+    setSelect(!select)
+  }
     return(
-        <Card className="bookCard" style={{ width: '18rem' }}>
+        <Card className={select?" bookCard redBorder" : "bookCard"} style={{ width: '18rem' }} onClick={handleClick}>
                      <Card.Img variant="top" className=" copertine" src={book.img}/>
                      <Card.Body>
                        <Card.Title>{book.title}</Card.Title>
@@ -13,4 +19,4 @@ function Libri({book}){
                    </Card>
     )
 }
-export default Libri;
+export default SingleBook;

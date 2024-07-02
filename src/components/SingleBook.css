@@ -11,10 +11,13 @@
 }
 
 .copertine{
-    width: 280px;
+    width: 290px;
     height: 350px;
     /* margin: 8px;
     border-radius: 20px;
     box-shadow: 10px 10px 5px #dedede; */
+}
 
+.redBorder{
+    border: solid 2px red
 }
