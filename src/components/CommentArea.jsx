@@ -8,7 +8,7 @@ function CommentArea({ asin }) {
     const loadComments = async () => {
         const response = await fetch(`https://striveschool-api.herokuapp.com/api/books/${asin}/comments/`, {
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg4MjlkMmEyNGEwNTAwMTViZmFkOGQiLCJpYXQiOjE3MjAxOTk2MzQsImV4cCI6MTcyMTQwOTIzNH0.cvpC9u4bNrenWmmxk5DVw-mS3gd_bkKc1ovgyK5gj18"
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjhhNWQ1ZWQzOTNmYzAwMTU5NzNmMWEiLCJpYXQiOjE3MjAzNDM5MDMsImV4cCI6MTcyMTU1MzUwM30.ui6ps0kQ5wmjJBFjxjmSsltT3r0hOMwUY7vaUTK6E0c"
             }
         })
         const data = await response.json()
@@ -19,8 +19,8 @@ function CommentArea({ asin }) {
     }, [])
     return (
         <>
-            <AddComment asin={asin} />
-           <CommentList comments={comments}/>
+            <AddComment asin={asin} addedComment={loadComments} />
+           <CommentList comments={comments} loadComments={loadComments}/>
         </>
     )
 }
