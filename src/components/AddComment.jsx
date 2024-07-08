@@ -50,7 +50,7 @@ function AddComment({asin , addedComment}){
         <Form.Label>Your Comment</Form.Label>
         <Form.Control as="textarea" rows={3} name="comment" value={formValue.comment} required onChange={handleChange}/>
       </Form.Group>
-      <Button className='mb-2' variant="primary" onClick={handleSaveComment}>Send Comment</Button>
+      <Button className='mb-2' variant="primary" onClick={handleSaveComment}>Add Comment</Button>
     </Form>
     )
     
