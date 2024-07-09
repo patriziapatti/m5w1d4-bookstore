@@ -26,17 +26,17 @@ function CommentArea({ asin }) {
         loadComments()
     }, [asin]);
 
-    const handleDeleteComment = (updateComments) => {
-        setComments(updateComments)
-    }
+    // const handleDeleteComment = (updateComments) => {
+    //     setComments(updateComments)
+    // }
 
-    const handleAddedComment = async () => {
-        loadComments()
-    }
+    // const handleAddedComment = async () => {
+    //     loadComments()
+    // }
     return (
         <>
-            <AddComment asin={asin} addedComment={handleAddedComment} />
-           <CommentList comments={comments} onDelete={handleDeleteComment}/>
+            <AddComment asin={asin} loadComments={loadComments} />
+           <CommentList comments={comments} loadComments={loadComments}/>
         </>
     )
 }

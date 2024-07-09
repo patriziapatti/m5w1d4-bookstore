@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 
-function AddComment({asin , addedComment}){
+function AddComment({asin , loadComments}){
     const initialFormState = {
       rate: "",
       comment: "",
@@ -19,6 +19,7 @@ function AddComment({asin , addedComment}){
     };
 
     const handleSaveComment = async () =>{
+      try {
       const response = await  fetch("https://striveschool-api.herokuapp.com/api/comments/",{
         headers: {
             "Content-Type": "application/json",
@@ -30,13 +31,17 @@ function AddComment({asin , addedComment}){
       )
       if(response.ok){
         
-        addedComment();
+        loadComments();
         setFormValue(initialFormState)
         {alert("Comment successfully added!")}
-      } 
-      else{
+      }else{
         {alert("Unable to add the comment! All fields are required.")}
       }
+      }
+      catch(error){
+        alert("Generic Error! Try Later.")
+      }
+    
     };
     //passare come prop da commentArea a commentList e poi da commentList ad AddComment la funzione loadComments e resettare i valori del form. 
 
