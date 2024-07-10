@@ -3,8 +3,8 @@ import Col from 'react-bootstrap/Col';
 import './MyFooter.css'
 import { Container } from 'react-bootstrap';
 
-function MyFooter(){
-    return(
+function MyFooter() {
+    return (
         <Container fluid className='footer mt-3 mb-0'>
             <Row className='justify-content-center py-3'>
                 <Col xs={12} sm={4} className='text-center'>Epicbook Bookshop srl -Via Roma, 100 90100 Palermo</Col>
