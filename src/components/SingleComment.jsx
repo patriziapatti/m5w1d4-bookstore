@@ -1,7 +1,10 @@
-import { useState } from 'react';
-import { ListGroup, Button, Form } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { ListGroup, Button, Form , Alert} from 'react-bootstrap';
 
-function SingleComment({ comment, loadComments }) {
+
+
+function SingleComment({ comment, loadComments, setAlert }) {
+    // const [alert, setAlert] = useState(null)
     const handleDelete = async () => {
         try {
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
@@ -13,27 +16,64 @@ function SingleComment({ comment, loadComments }) {
             })
             if (response.ok) {
                 loadComments()
-                alert("Comment successfully deleted!")
+                // alert("Comment successfully deleted!")
+                setAlert({
+                    success: true, 
+                    message: "Comment successfully deleted!"
+                    })
             } else {
-                alert("Unable to delete the comment!")
+                // alert("Unable to delete the comment!")
+                setAlert({
+                    success: false, 
+                    message: "Unable to delete the comment!"
+                    })
             }
         }
         catch (error) {
-            alert("General Error! Try Later")
+            // alert("General Error! Try Later")
+            setAlert({
+                success: false, 
+                message: "General Error! Try Later"
+                })
         }
+        setTimeout(() =>{
+            setAlert(null)
+          }, 2000
+        )
     }
 
     const [isEditing, setIsEditing] = useState(false)
-    const initialFormValue = {
-        rate: comment.rate,
-        comment: comment.comment,
-        elementId: comment.elementId
-    }
-    const [formValue, setFormValue] = useState(initialFormValue)
+    const [alertEdit, setAlertEdit] = useState(null)
+    // const initialFormValue = {
+    //     rate: comment.rate,
+    //     comment: comment.comment,
+    //     elementId: comment.elementId
+    // }
+    const [formValue, setFormValue] = useState({})
     const editForm = () => {
         setIsEditing(!isEditing)
     }
+    useEffect (()=>{
+        const initialFormValue = {
+            rate: comment.rate,
+            comment: comment.comment,
+            elementId: comment.elementId
+        }
+        setFormValue(initialFormValue)
+    },[comment])
     const handleEdit = async () => {
+        if(formValue.rate > 5 || formValue.rate < 1 || formValue.comment === ""){
+            // alert("Insert a number between 1 and 5")
+            setAlertEdit({
+                success: false,
+                message: "Insert a number between 1 and 5; All fields are required."
+              })
+              setTimeout(() =>{
+                setAlertEdit(null)
+              }, 2000
+            )
+            return
+        }
         try {
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
                 headers: {
@@ -44,23 +84,40 @@ function SingleComment({ comment, loadComments }) {
                 body: JSON.stringify(formValue)
             })
             if (response.ok) {
-                alert("Comment successfully edited!")
+                // alert("Comment successfully edited!")
+                setAlertEdit({
+                    success: true, 
+                    message: "Comment successfully edited!"
+                    })
                 setIsEditing(false)
-                setFormValue(initialFormValue)
                 loadComments()
+                // setFormValue(initialFormValue)
             } else {
-                alert("Unable to edit the comment!")
+                // alert("Unable to edit the comment!")
+                setAlertEdit({
+                    success: false,
+                    message: "Unable to edit the comment! All fields are required."
+                  })
             }
         }
         catch (error) {
-            alert("General Error! Try Later")
+            // alert("General Error! Try Later")
+            setAlertEdit({
+                success: false,
+                message: "General Error! Try Later"
+              })
         }
+        setTimeout(() =>{
+            setAlertEdit(null)
+          }, 2000
+        )
     }
     const handleChange = (ev => {
         setFormValue({ ...formValue, [ev.target.name]: ev.target.value })
     })
     return (
         <>
+        {alertEdit && <Alert key={alert.success? "success" : "danger"} variant={alertEdit.success? "success" : "danger"} onClose={() => setAlertEdit(null)}dismissible>{alertEdit.message}</Alert> }
             <ListGroup className="mb-3">
                 <ListGroup.Item>Score: {isEditing ? <Form.Group className="mb-3" controlId="rate">
                     <Form.Label>Rate from 1 to 5</Form.Label>

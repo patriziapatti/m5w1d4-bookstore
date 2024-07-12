@@ -4,6 +4,7 @@ import MyFooter from "./components/MyFooter";
 import MyNav from "./components/MyNav";
 import Welcome from "./components/Welcome";
 import { books } from "./data/Books";
+import ThemeContextProvider from "./context/ThemeContextProvider";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -16,12 +17,15 @@ function App() {
         setResultSearch(resultSearchTemp)
     }
   return (
-    <div>
-      <MyNav handleSearch={handleSearch} />
-      <Welcome />
-      <AllTheBooks resultSearch={resultSearch}/>
-      <MyFooter />
-    </div>
+    <ThemeContextProvider>
+      <div>
+        <MyNav handleSearch={handleSearch} />
+        <Welcome />
+        <AllTheBooks resultSearch={resultSearch}/>
+        <MyFooter />
+      </div>
+    </ThemeContextProvider>
+    
   );
 }
 

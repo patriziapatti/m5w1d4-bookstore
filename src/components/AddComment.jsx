@@ -1,5 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import { useState } from 'react';
 
 function AddComment({ asin, loadComments }) {
@@ -10,6 +11,7 @@ function AddComment({ asin, loadComments }) {
   };
 
   const [formValue, setFormValue] = useState(initialFormState)
+  const [alert, setAlert] = useState(null)
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValue({
@@ -33,19 +35,37 @@ function AddComment({ asin, loadComments }) {
 
         loadComments();
         setFormValue(initialFormState)
-        { alert("Comment successfully added!") }
+        // alert("Comment successfully added!") 
+        setAlert({
+        success: true, 
+        message: "Comment successfully added!"
+        })
       } else {
-        { alert("Unable to add the comment! All fields are required.") }
+        // alert("Unable to add the comment! All fields are required.")
+        setAlert({
+          success: false,
+          message: "Unable to add the comment! All fields are required."
+        })
       }
     }
     catch (error) {
-      alert("Generic Error! Try Later.")
+      // alert("Generic Error! Try Later.")
+      setAlert({
+        success: false,
+        message: "Generic Error! Try Later."
+      })
     }
+    setTimeout(() =>{
+      setAlert(null)
+    }, 2000
+  )
 
   };
   //passare come prop da commentArea a commentList e poi da commentList ad AddComment la funzione loadComments e resettare i valori del form. 
 
   return (
+    <>
+    {alert && <Alert key={alert.success? "success" : "danger"} variant={alert.success? "success" : "danger"} onClose={() => setAlert(null)}dismissible>{alert.message}</Alert> }
     <Form>
       <Form.Group className="mb-3" controlId="rate">
         <Form.Label>Rate from 1 to 5</Form.Label>
@@ -57,6 +77,7 @@ function AddComment({ asin, loadComments }) {
       </Form.Group>
       <Button className='mb-2' variant="primary" onClick={handleSaveComment}>Add Comment</Button>
     </Form>
+    </>
   )
 
 }
