@@ -1,10 +1,14 @@
 import { books } from "../data/Books";
 import SingleBook from "./SingleBook";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { useState } from "react";
 import CommentArea from "./CommentArea";
+import { ThemeContext } from '../context/ThemeContextProvider';
+import { useContext } from 'react';
+
 
 function AllTheBooks({ resultSearch }) {
+    const {theme} = useContext(ThemeContext)
     const [select, setSelect] = useState(null)
     const handleClick = (asin) => {
         if(asin === select){
@@ -14,15 +18,14 @@ function AllTheBooks({ resultSearch }) {
         }
         
       }
-
     return (
-        <main className="mx-2">
+        <main className={theme ==="light"?"mx-2" : "bg-dark mx-2" } data-bs-theme={theme}>
 
             <h3 className="text-center text-primary">Book List:</h3>
-
+        <Container fluid>
         <Row>
             <Col xs={6} md={8} lg={9}>
-            <div className="d-flex flex-wrap justify-content-evenly ">
+            <div className="d-flex flex-wrap justify-content-evenly pe-0 ">
                 {resultSearch.map((b) => (
                     <SingleBook key={b.asin} book={b} select={select} handleClick={handleClick} />
                 )
@@ -33,6 +36,7 @@ function AllTheBooks({ resultSearch }) {
             {select && <CommentArea asin={select} />}
             </Col>
         </Row>
+        </Container>
         </main>
     )
 }
