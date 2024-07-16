@@ -1,3 +1,4 @@
+import "./AllTheBooks.css"
 import { books } from "../data/Books";
 import SingleBook from "./SingleBook";
 import { Row, Col, Container } from "react-bootstrap";
@@ -19,7 +20,7 @@ function AllTheBooks({ resultSearch }) {
         
       }
     return (
-        <main className={theme ==="light"?"mx-2" : "bg-dark mx-2" } data-bs-theme={theme}>
+        <main className={theme ==="light"?"" : "bg-dark" } data-bs-theme={theme}>
 
             <h3 className="text-center text-primary">Book List:</h3>
         <Container fluid>
@@ -32,7 +33,7 @@ function AllTheBooks({ resultSearch }) {
                 )}
             </div>
             </Col>
-            <Col xs={6} md={4} lg={3}>
+            <Col xs={6} md={4} lg={3} className="colonnaSticky">
             {select && <CommentArea asin={select} />}
             </Col>
         </Row>

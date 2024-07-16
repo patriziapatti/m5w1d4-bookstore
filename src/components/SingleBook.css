@@ -1,10 +1,22 @@
 .bookCard{
-    margin: 10px;
     box-shadow: 10px 10px 5px #dedede;
     transition: transform 0.2s; 
 }
 
+.cardMargin{
+    margin: 10px;
+}
+
 .bookCard:hover{
+    transform: scale(1.05)
+}
+
+.bookCardDark{
+    box-shadow: 10px 10px 5px #0a0a0a;
+    transition: transform 0.2s; 
+}
+
+.bookCardDark:hover{
     transform: scale(1.05)
 }
 
