@@ -8,7 +8,7 @@ import { useContext } from 'react';
 function MyFooter() {
     const {theme} = useContext(ThemeContext)
     return (
-        <Container fluid className={theme==="light"?'footer mt-3 mb-0': "mb-0"}>
+        <Container fluid className='footer mt-3 mb-0'>
             <Row className= {theme ==="light"?'justify-content-center py-3' : 'bg-dark text-white justify-content-center py-3'}>
                 <Col xs={12} sm={4} className='text-center'>Epicbook Bookshop srl -Via Roma, 100 90100 Palermo</Col>
                 <Col xs={12} sm={4} className='text-center'>P.I: 1234567890</Col>

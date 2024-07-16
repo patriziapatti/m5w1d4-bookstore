@@ -5,7 +5,6 @@ import MyNav from "./components/MyNav";
 import Welcome from "./components/Welcome";
 import { books } from "./data/Books";
 import ThemeContextProvider from "./context/ThemeContextProvider";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -18,7 +17,6 @@ function App() {
         setResultSearch(resultSearchTemp)
     }
   return (
-    <BrowserRouter>
     <ThemeContextProvider>
       <div>
         <MyNav handleSearch={handleSearch} />
@@ -27,7 +25,7 @@ function App() {
         <MyFooter />
       </div>
     </ThemeContextProvider>
-    </BrowserRouter>
+    
   );
 }
 
