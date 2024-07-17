@@ -5,6 +5,9 @@ import MyNav from "./components/MyNav";
 import Welcome from "./components/Welcome";
 import { books } from "./data/Books";
 import ThemeContextProvider from "./context/ThemeContextProvider";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import NotFound from "./pages/NotFound";
+import BookDetails from "./pages/BookDetails";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -17,16 +20,22 @@ function App() {
         setResultSearch(resultSearchTemp)
     }
   return (
+    <BrowserRouter>
     <ThemeContextProvider>
       <div>
         <MyNav handleSearch={handleSearch} />
         <Welcome />
-        <AllTheBooks resultSearch={resultSearch}/>
+      <Routes>  
+        <Route path="/" element={<AllTheBooks resultSearch={resultSearch} />}/>
+        <Route path="/bookdetails/:asin" element={<BookDetails />}/>
+        <Route path="/404" element={<NotFound/>}/>
+        <Route path="/*" element={<Navigate to="/404" />} />
+        {/* <AllTheBooks resultSearch={resultSearch}/> */}
+        </Routes>
         <MyFooter />
       </div>
     </ThemeContextProvider>
-    
+    </BrowserRouter>
   );
 }
-
 export default App;

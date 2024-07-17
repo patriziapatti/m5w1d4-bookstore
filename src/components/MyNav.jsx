@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { ThemeContext } from '../context/ThemeContextProvider';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 function MyNav({ handleSearch }) {
   const {theme, toggleTheme} = useContext(ThemeContext)
@@ -16,8 +17,8 @@ function MyNav({ handleSearch }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Aboutk</Nav.Link>
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link href="#link">About</Nav.Link>
               <Nav.Link href="#link">Browse</Nav.Link>
             </Nav>
             <Button className="me-2"variant="light" onClick={() => toggleTheme()}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
