@@ -118,7 +118,7 @@ function SingleComment({ comment, loadComments, setAlert }) {
     return (
         <>
         {alertEdit && <Alert key={alert.success? "success" : "danger"} variant={alertEdit.success? "success" : "danger"} onClose={() => setAlertEdit(null)}dismissible>{alertEdit.message}</Alert> }
-            <ListGroup className="mb-3">
+            <ListGroup data-testid="single-comment" className="mb-3">
                 <ListGroup.Item>Score: {isEditing ? <Form.Group className="mb-3" controlId="rate">
                     <Form.Label>Rate from 1 to 5</Form.Label>
                     <Form.Control type="number" placeholder="Rate" min="1" max="5" name='rate' value={formValue.rate} required onChange={handleChange} />
