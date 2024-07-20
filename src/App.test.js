@@ -2,7 +2,7 @@ import { findAllByTestId, fireEvent, getByPlaceholderText, render, screen } from
 import App from './App'
 
 
-test('il componente welcome è montato correttamente test1', ()=>{
+test('il componente welcome è montato correttamente test1', () => {
     render(<App />)
 
     const welcomeComponent = screen.getByText(/welcome/i);
@@ -10,15 +10,15 @@ test('il componente welcome è montato correttamente test1', ()=>{
     expect(welcomeComponent).toBeInTheDocument();
 })
 
-test ('all the books contiene 150 libri test2', () =>{
-    render (<App />);
+test('all the books contiene 150 libri test2', () => {
+    render(<App />);
 
     const bookCards = screen.getAllByTestId("card-img");
 
     expect(bookCards).toHaveLength(150);
 })
 
-test ('verifica che CommentArea sia renderizzato correttamente test3', ()=>{
+test('verifica che CommentArea sia renderizzato correttamente test3', () => {
     render(<App />);
 
     const bookCards = screen.getAllByTestId("card-img");
@@ -31,37 +31,37 @@ test ('verifica che CommentArea sia renderizzato correttamente test3', ()=>{
 
 })
 
-describe('filtraggio tramite navbar test4', ()=>{
-    test('cerca1', ()=>{
-        render (<App />);
+describe('filtraggio tramite navbar test4', () => {
+    test('cerca1', () => {
+        render(<App />);
 
         const filterInput = screen.getByPlaceholderText(/Search your book/i);
 
-        fireEvent.change(filterInput, {target:{value:'conan'}})
+        fireEvent.change(filterInput, { target: { value: 'conan' } })
 
         const bookCards = screen.getAllByTestId("card-img");
 
         expect(bookCards).toHaveLength(2);
     })
 
-    test ('cerca2', () => {
-        render (<App />);
+    test('cerca2', () => {
+        render(<App />);
 
         const filterInput = screen.getByPlaceholderText(/Search your book/i);
 
-        fireEvent.change(filterInput, {target:{value:'sword'}})
+        fireEvent.change(filterInput, { target: { value: 'sword' } })
 
         const bookCards = screen.getAllByTestId("card-img");
 
         expect(bookCards).toHaveLength(9);
     })
 
-    test ('cerca3', () => {
-        render (<App />);
+    test('cerca3', () => {
+        render(<App />);
 
         const filterInput = screen.getByPlaceholderText(/Search your book/i);
 
-        fireEvent.change(filterInput, {target:{value:'patrizia'}})
+        fireEvent.change(filterInput, { target: { value: 'patrizia' } })
 
         const bookCards = screen.queryAllByTestId("card-img");
 
@@ -69,7 +69,7 @@ describe('filtraggio tramite navbar test4', ()=>{
     })
 })
 
-test('cliccando sull immagine del libro il bordo diventa rosso test5', ()=>{
+test('cliccando sull immagine del libro il bordo diventa rosso test5', () => {
     render(<App />);
 
     const bookCards = screen.getAllByTestId("card-img");
@@ -79,7 +79,7 @@ test('cliccando sull immagine del libro il bordo diventa rosso test5', ()=>{
     expect(bookCards[0]).toHaveClass('redBorder')
 })
 
-test('cliccando su un secondo libro dopo il primo, il primo perde il bordo rosso test6', () =>{
+test('cliccando su un secondo libro dopo il primo, il primo perde il bordo rosso test6', () => {
     render(<App />);
 
     const bookCards = screen.getAllByTestId("card-img");
@@ -92,7 +92,7 @@ test('cliccando su un secondo libro dopo il primo, il primo perde il bordo rosso
 
 })
 
-test ('non renderizza single comment test7', ()=>{
+test('non renderizza single comment test7', () => {
     render(<App />);
 
     const singleComment = screen.queryAllByTestId('single-comment')
@@ -101,8 +101,8 @@ test ('non renderizza single comment test7', ()=>{
     //oppure expect(singleComment).toHaveLength(0);
 })
 
-test ('verifica che cliccando su libro ci siano le recensioni test8', async ()=>{
-    render (<App />);
+test('verifica che cliccando su libro ci siano le recensioni test8', async () => {
+    render(<App />);
 
     const bookCards = screen.getAllByTestId('card-img')
 

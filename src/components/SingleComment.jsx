@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ListGroup, Button, Form , Alert} from 'react-bootstrap';
+import { ListGroup, Button, Form, Alert } from 'react-bootstrap';
 
 
 
 function SingleComment({ comment, loadComments, setAlert }) {
-    // const [alert, setAlert] = useState(null)
     const handleDelete = async () => {
         try {
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
@@ -16,61 +15,53 @@ function SingleComment({ comment, loadComments, setAlert }) {
             })
             if (response.ok) {
                 loadComments()
-                // alert("Comment successfully deleted!")
                 setAlert({
-                    success: true, 
+                    success: true,
                     message: "Comment successfully deleted!"
-                    })
+                })
             } else {
-                // alert("Unable to delete the comment!")
                 setAlert({
-                    success: false, 
+                    success: false,
                     message: "Unable to delete the comment!"
-                    })
+                })
             }
         }
         catch (error) {
-            // alert("General Error! Try Later")
             setAlert({
-                success: false, 
+                success: false,
                 message: "General Error! Try Later"
-                })
+            })
         }
-        setTimeout(() =>{
+        setTimeout(() => {
             setAlert(null)
-          }, 2000
+        }, 2000
         )
     }
 
     const [isEditing, setIsEditing] = useState(false)
     const [alertEdit, setAlertEdit] = useState(null)
-    // const initialFormValue = {
-    //     rate: comment.rate,
-    //     comment: comment.comment,
-    //     elementId: comment.elementId
-    // }
+
     const [formValue, setFormValue] = useState({})
     const editForm = () => {
         setIsEditing(!isEditing)
     }
-    useEffect (()=>{
+    useEffect(() => {
         const initialFormValue = {
             rate: comment.rate,
             comment: comment.comment,
             elementId: comment.elementId
         }
         setFormValue(initialFormValue)
-    },[comment])
+    }, [comment])
     const handleEdit = async () => {
-        if(formValue.rate > 5 || formValue.rate < 1 || formValue.comment === ""){
-            // alert("Insert a number between 1 and 5")
+        if (formValue.rate > 5 || formValue.rate < 1 || formValue.comment === "") {
             setAlertEdit({
                 success: false,
                 message: "Insert a number between 1 and 5; All fields are required."
-              })
-              setTimeout(() =>{
+            })
+            setTimeout(() => {
                 setAlertEdit(null)
-              }, 2000
+            }, 2000
             )
             return
         }
@@ -84,32 +75,28 @@ function SingleComment({ comment, loadComments, setAlert }) {
                 body: JSON.stringify(formValue)
             })
             if (response.ok) {
-                // alert("Comment successfully edited!")
                 setAlertEdit({
-                    success: true, 
+                    success: true,
                     message: "Comment successfully edited!"
-                    })
+                })
                 setIsEditing(false)
                 loadComments()
-                // setFormValue(initialFormValue)
             } else {
-                // alert("Unable to edit the comment!")
                 setAlertEdit({
                     success: false,
                     message: "Unable to edit the comment! All fields are required."
-                  })
+                })
             }
         }
         catch (error) {
-            // alert("General Error! Try Later")
             setAlertEdit({
                 success: false,
                 message: "General Error! Try Later"
-              })
+            })
         }
-        setTimeout(() =>{
+        setTimeout(() => {
             setAlertEdit(null)
-          }, 2000
+        }, 2000
         )
     }
     const handleChange = (ev => {
@@ -117,7 +104,7 @@ function SingleComment({ comment, loadComments, setAlert }) {
     })
     return (
         <>
-        {alertEdit && <Alert key={alert.success? "success" : "danger"} variant={alertEdit.success? "success" : "danger"} onClose={() => setAlertEdit(null)}dismissible>{alertEdit.message}</Alert> }
+            {alertEdit && <Alert key={alert.success ? "success" : "danger"} variant={alertEdit.success ? "success" : "danger"} onClose={() => setAlertEdit(null)} dismissible>{alertEdit.message}</Alert>}
             <ListGroup data-testid="single-comment" className="mb-3">
                 <ListGroup.Item>Score: {isEditing ? <Form.Group className="mb-3" controlId="rate">
                     <Form.Label>Rate from 1 to 5</Form.Label>

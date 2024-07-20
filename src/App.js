@@ -11,30 +11,29 @@ import BookDetails from "./pages/BookDetails";
 
 function App() {
   const [search, setSearch] = useState("");
-    const [resultSearch, setResultSearch] = useState(books)
-    const handleSearch = (event) => {
-        setSearch(event.target.value);
-        const resultSearchTemp = books.filter((b) => {
-          return b.title.toLowerCase().includes(event.target.value.toLowerCase());
-        })
-        setResultSearch(resultSearchTemp)
-    }
+  const [resultSearch, setResultSearch] = useState(books)
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    const resultSearchTemp = books.filter((b) => {
+      return b.title.toLowerCase().includes(event.target.value.toLowerCase());
+    })
+    setResultSearch(resultSearchTemp)
+  }
   return (
     <BrowserRouter>
-    <ThemeContextProvider>
-      <div>
-        <MyNav handleSearch={handleSearch} />
-        <Welcome />
-      <Routes>  
-        <Route path="/" element={<AllTheBooks resultSearch={resultSearch} />}/>
-        <Route path="/bookdetails/:asin" element={<BookDetails />}/>
-        <Route path="/404" element={<NotFound/>}/>
-        <Route path="/*" element={<Navigate to="/404" />} />
-        {/* <AllTheBooks resultSearch={resultSearch}/> */}
-        </Routes>
-        <MyFooter />
-      </div>
-    </ThemeContextProvider>
+      <ThemeContextProvider>
+        <div>
+          <MyNav handleSearch={handleSearch} />
+          <Welcome />
+          <Routes>
+            <Route path="/" element={<AllTheBooks resultSearch={resultSearch} />} />
+            <Route path="/bookdetails/:asin" element={<BookDetails />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="/*" element={<Navigate to="/404" />} />
+          </Routes>
+          <MyFooter />
+        </div>
+      </ThemeContextProvider>
     </BrowserRouter>
   );
 }
