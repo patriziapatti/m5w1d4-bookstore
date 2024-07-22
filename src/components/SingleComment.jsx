@@ -8,7 +8,7 @@ function SingleComment({ comment, loadComments, setAlert }) {
         try {
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjhhNWQ1ZWQzOTNmYzAwMTU5NzNmMWEiLCJpYXQiOjE3MjAzNDM5MDMsImV4cCI6MTcyMTU1MzUwM30.ui6ps0kQ5wmjJBFjxjmSsltT3r0hOMwUY7vaUTK6E0c",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllM2YyZTA5OWJlMjAwMTU5MWNjMGEiLCJpYXQiOjE3MjE2NDY4OTQsImV4cCI6MTcyMjg1NjQ5NH0.mZdksicFoUis4kCyWKLHPqjPhz6JIDMnxhalbTYDsi4",
                     'Content-Type': 'application/json'
                 },
                 method: "DELETE",
@@ -68,7 +68,7 @@ function SingleComment({ comment, loadComments, setAlert }) {
         try {
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjhhNWQ1ZWQzOTNmYzAwMTU5NzNmMWEiLCJpYXQiOjE3MjAzNDM5MDMsImV4cCI6MTcyMTU1MzUwM30.ui6ps0kQ5wmjJBFjxjmSsltT3r0hOMwUY7vaUTK6E0c",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllM2YyZTA5OWJlMjAwMTU5MWNjMGEiLCJpYXQiOjE3MjE2NDY4OTQsImV4cCI6MTcyMjg1NjQ5NH0.mZdksicFoUis4kCyWKLHPqjPhz6JIDMnxhalbTYDsi4",
                     'Content-Type': 'application/json'
                 },
                 method: "PUT",
